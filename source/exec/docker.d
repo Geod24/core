@@ -118,7 +118,8 @@ class Docker: IExecProvider
 		// try to find the compiler in the available images
 		auto r = DockerImages.find!(d => d.canFind(input.compiler));
 		// use dmd as fallback
-		const dockerImage = (r.length > 0) ? r[0] : DockerImages[0];
+		const fallback = !(r.length > 0);
+		const dockerImage = !fallback ? r[0] : DockerImages[0];
 
         auto env = [
             "DOCKER_FLAGS": input.args,
@@ -144,7 +145,8 @@ class Docker: IExecProvider
 		bool success;
 		auto startTime = Clock.currTime();
 
-		logInfo("Executing Docker image %s with env='%s'", dockerImage, env);
+		logInfo("Executing Docker image %s%s with env='%s'",
+				dockerImage, fallback ? " (fallback)" : "", env);
 
 		string output;
 		enum bufReadLength = 4096;
