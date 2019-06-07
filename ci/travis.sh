@@ -10,7 +10,7 @@ git submodule foreach 'git fetch && git checkout origin/master'
 # Compile & test with all compilers
 # https://issues.dlang.org/show_bug.cgi?id=13742 + separate linking not implemented for LDC
 if [[ "${DC}" == "dmd" ]]; then
-    dub test --compiler=${DC} --build=unittest-cov --build-mode=singleFile
+    dub test --compiler=${DC} --build=unittest-cov
 else
     dub test --compiler=${DC}
 fi
