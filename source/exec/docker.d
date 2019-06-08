@@ -39,7 +39,7 @@ class Docker: IExecProvider
 
 	this(int timeLimitInSeconds, int maximumOutputSize,
 			int maximumQueueSize, int memoryLimitMB,
-			string dockerBinaryPath, bool waitUntilPulled)
+         string dockerBinaryPath, bool waitUntilPulled)
 	{
 		this.timeLimitInSeconds_ = timeLimitInSeconds;
 		this.maximumOutputSize_ = maximumOutputSize;

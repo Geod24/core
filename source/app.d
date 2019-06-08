@@ -119,9 +119,11 @@ shared static this()
 	bool sanityCheck = false;
 	string customLangDirectory;
 	string defaultLang = "en";
+    string compiler = "dmd";
 
 	readOption("c|config", &configFile, "Configuration file");
 	readOption("wait-until-pulled", &waitUntilPulled, "Wait until all docker images have been pulled.");
+    readOption("compiler", &compiler, "Compiler to use when building");
 	readOption("sanitycheck", &sanityCheck,
 	    "Runs sanity check before starting that checks whether all source code examples actually compile; doesn't start the service");
 	readOption("lang-dir|l", &customLangDirectory, "Language directory");

@@ -13,10 +13,20 @@ interface IExecProvider
 	struct RunInput
 	{
 		string source;
-		string compiler = "dmd";
 		string args;
 		string stdin;
 		bool color;
+
+        @property string compiler () nothrow @nogc pure @safe const
+        {
+            assert(this.compiler_.length);
+            return this.compiler_;
+        }
+        @property void compiler (string val) nothrow @nogc pure @safe
+        {
+            this.compiler_ = val;
+        }
+        private string compiler_;
 	}
 	Tuple!(string, "output", bool, "success") compileAndExecute(RunInput input);
 

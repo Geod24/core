@@ -84,11 +84,13 @@ class ApiV1: IApiV1
 		// Be explicit here, in case the exec API and the REST API change
 		IExecProvider.RunInput runInput = {
 			source: input.source,
-			compiler : input.compiler,
 			args: input.args,
 			stdin: input.stdin,
 			color: input.color,
 		};
+        // This is a property
+        runInput.compiler = input.compiler;
+
 		auto result = execProvider_.compileAndExecute(runInput);
 		auto output = RunOutput(result.output, result.success);
 		parseErrorsAndWarnings(output);
